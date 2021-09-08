@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 export default function Layout({ children }) {
   return (
-    <div className="dark:bg-black dark:text-white overflow-hidden">
+    <div className="dark:bg-black dark:text-white overflow-hidden tracking-tight">
       <Head>
         <title>Mayura Ramanayaka &mdash; (Index)</title>
       </Head>

@@ -11,7 +11,7 @@ export default function Navbar() {
           Mayura Ramanayaka
         </motion.p>
         <motion.p>
-          Software Engineer, <a href="#">94DEV®</a>
+          Software Engineer, <a href="#">BASIC®</a>
         </motion.p>
         <motion.p>Colombo, Sri Lanka</motion.p>
       </div>

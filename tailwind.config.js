@@ -10,7 +10,7 @@ module.exports = {
       white: "#FFFFFF",
     },
     fontFamily: {
-      sans: ["Neue Montreal"],
+      sans: ["Test Untitled Sans"],
     },
   },
   variants: {
