@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "font";
+    font-style: normal;
+    font-display: block;
+    src: url(/fonts/font.ttf) format("truetype");
+  }
+
+  body {
+    letter-spacing: -0.2px;
+  }
+}

@@ -1,5 +1,3 @@
-import Logo from "./Logo";
-
 export default function Navbar() {
   return (
     <div className="flex justify-between items-center py-3 px-5">
