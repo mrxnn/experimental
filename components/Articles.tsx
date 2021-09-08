@@ -1,32 +1,46 @@
+import { motion } from "framer-motion";
 import projects from "../data/projects.json";
 import { zeroPad } from "../lib/numbers";
 
 export default function Articles() {
   return (
-    <div className="flex flex-col mt-[60vh]">
+    <div className="flex flex-col">
       <ArticleHeader />
       {projects.map(({ description }, index) => (
-        <Article description={description} index={zeroPad(++index, 3)} />
+        <Article
+          key={index}
+          description={description}
+          index={zeroPad(++index, 3)}
+          delay={index}
+        />
       ))}
     </div>
   );
 }
 
-export function Article({ index, description }) {
+export function Article({ index, description, delay }) {
   return (
-    <div className="flex items-center border-b-2 py-9">
+    <motion.div
+      className="flex items-center border-b-2 py-9"
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 0.4, delay: delay * 0.1 + 0.6 }}>
       <p className="w-36">{index}</p>
       <p className="flex-1">{description}</p>
-    </div>
+    </motion.div>
   );
 }
 
 export function ArticleHeader() {
   return (
-    <div className="flex items-center border-b-2 py-9">
+    <motion.div
+      className="flex items-center border-b-2 py-9"
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 0.5, delay: 0.6 }}>
       <p className="w-36">#</p>
       <p className="flex-1">Name</p>
       <p className="rotate-90">&rarr;</p>
-    </div>
+    </motion.div>
   );
 }
