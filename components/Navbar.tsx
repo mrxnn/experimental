@@ -4,7 +4,7 @@ export default function Navbar() {
       <p>Mayura Ramanayaka</p>
       <ul className="flex items-center space-x-5">
         <li className="underline">Blog</li>
-        <li className="text-2xl">⌘</li>
+        <li className="text-xl">⌘</li>
       </ul>
     </div>
   );
