@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Arial", ...fontFamily.sans],
+        sans: ["Neue Haas Grotesk Display", ...fontFamily.sans],
       },
     },
   },

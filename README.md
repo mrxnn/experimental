@@ -1,3 +1,3 @@
-## Prisma App
+## mayurarx.com
 
-Testing prisma + next.js integration
+Personal website - new version
