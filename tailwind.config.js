@@ -10,7 +10,7 @@ module.exports = {
       white: "#FFFFFF",
     },
     fontFamily: {
-      sans: ["Neue Haas Grotesk Display"],
+      sans: ["Neue Montreal"],
     },
   },
   variants: {
