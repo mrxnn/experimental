@@ -31,22 +31,25 @@ export default function Navbar() {
           </motion.p>
         </motion.div>
       </div>
-      <ul className="flex items-center space-x-5">
-        <motion.li
+      <div className="flex items-center space-x-5">
+        <motion.div
           initial={{ opacity: 0, translateY: 20 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}
           className="underline">
           Blog
-        </motion.li>
-        <motion.li
+        </motion.div>
+        <motion.button
           initial={{ opacity: 0, translateY: 20 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
-          className="text-xl">
+          className="text-xl has-tooltip relative">
+          <span className="tooltip absolute px-3 py-1 rounded top-full -right-1 mt-2">
+            Menu
+          </span>
           ⌘
-        </motion.li>
-      </ul>
+        </motion.button>
+      </div>
     </div>
   );
 }
