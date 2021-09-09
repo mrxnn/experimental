@@ -1,8 +1,9 @@
 import Layout from "../components/Layout";
 import Articles from "../components/Articles";
 import { motion } from "framer-motion";
+import { getPosts } from "../lib/posts";
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <Layout>
       <motion.p
@@ -12,7 +13,16 @@ export default function Home() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 4 * 0.15 }}>
         10 Posts
       </motion.p>
-      <Articles />
+      <Articles posts={posts} />
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const posts = await getPosts();
+  return {
+    props: {
+      posts,
+    },
+  };
 }

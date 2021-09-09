@@ -6,6 +6,7 @@ export default function Navbar() {
       <div>
         <motion.div className="overflow-hidden">
           <motion.p
+            className="font-bold"
             initial={{ translateY: 44 }}
             animate={{ translateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>

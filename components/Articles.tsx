@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
-import projects from "../data/projects.json";
 import { zeroPad } from "../lib/numbers";
 
-export default function Articles() {
+export default function Articles({ posts }) {
   return (
     <div className="flex flex-col">
       <ArticleHeader />
-      {projects.map(({ description }, index) => (
+      {posts?.map(({ id, title }, index) => (
         <Article
           key={index}
-          description={description}
-          index={zeroPad(++index, 3)}
+          description={title}
+          index={zeroPad(id, 3)}
           delay={index}
         />
       ))}
