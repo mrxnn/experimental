@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { zeroPad } from "../lib/numbers";
-import { PostMeta } from "../types/post";
+import { Post } from "../types/post";
 
-export default function BlogPosts({ posts }: { posts: PostMeta[] }) {
+export default function BlogPosts({ posts }: { posts: Post[] }) {
   return (
     <>
       <BlogPostCount count={posts.length} />

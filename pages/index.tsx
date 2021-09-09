@@ -1,9 +1,9 @@
 import Layout from "../components/Layout";
 import BlogPosts from "../components/BlogPosts";
-import { getFrontMatters } from "../lib/mdx";
-import { PostMeta } from "../types/post";
+import { getMdx } from "../lib/mdx";
+import { Post } from "../types/post";
 
-export default function Home({ posts }: { posts: PostMeta[] }) {
+export default function Home({ posts }: { posts: Post[] }) {
   return (
     <Layout>
       <BlogPosts posts={posts} />
@@ -12,7 +12,7 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
 }
 
 export async function getStaticProps() {
-  const posts = await getFrontMatters("blog");
+  const posts: Post[] = await getMdx("blog");
   return {
     props: {
       posts: posts.sort(

@@ -1,12 +1,7 @@
-export type PostMeta = {
+export type Post = {
   title: string;
   summary: string;
   publishedAt: string;
-  category?: "draft" | "project" | "post";
-  slug?: string;
-};
-
-export type Post = {
-  meta: PostMeta;
-  code?: any;
+  slug: string;
+  content: string;
 };
