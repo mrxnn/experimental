@@ -6,7 +6,6 @@ export default function Navbar() {
       <div>
         <motion.div className="overflow-hidden">
           <motion.p
-            className="font-bold"
             initial={{ translateY: 44 }}
             animate={{ translateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
@@ -28,7 +27,7 @@ export default function Navbar() {
             initial={{ translateY: 44 }}
             animate={{ translateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}>
-            Colombo, Sri Lanka
+            Kandy, Sri Lanka
           </motion.p>
         </motion.div>
       </div>

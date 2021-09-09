@@ -1,36 +1,55 @@
 import { motion } from "framer-motion";
 import { zeroPad } from "../lib/numbers";
+import { PostMeta } from "../types/post";
 
-export default function Articles({ posts }) {
+export default function BlogPosts({ posts }: { posts: PostMeta[] }) {
   return (
-    <div className="flex flex-col">
-      <ArticleHeader />
-      {posts?.map(({ id, title }, index) => (
-        <Article
+    <>
+      <BlogPostCount count={posts.length} />
+
+      <BlogHeader />
+
+      {posts?.map((post, index) => (
+        <BlogPost
           key={index}
-          description={title}
-          index={zeroPad(id, 3)}
+          {...post}
+          index={zeroPad(index + 1, 3)}
           delay={index}
         />
       ))}
-    </div>
+    </>
   );
 }
 
-export function Article({ index, description, delay }) {
+// number of blog posts
+function BlogPostCount({ count }: { count: number }) {
+  return (
+    <motion.p
+      className="tracking-widest text-xs uppercase opacity-50"
+      initial={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 0.5, translateY: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 4 * 0.15 }}>
+      {zeroPad(count, 2)} Posts
+    </motion.p>
+  );
+}
+
+// blog post preview
+function BlogPost({ index, title, delay }) {
   return (
     <motion.div
       className="flex items-center border-b py-9"
       initial={{ opacity: 0, translateY: 20 }}
       animate={{ opacity: 1, translateY: 0 }}
-      transition={{ duration: 0.8, delay: (delay + 4) * 0.15 }}>
+      transition={{ duration: 0.8, delay: (delay + 6) * 0.15 }}>
       <p className="w-36 md:w-52">{index}</p>
-      <p className="flex-1">{description}</p>
+      <p className="flex-1">{title}</p>
     </motion.div>
   );
 }
 
-export function ArticleHeader() {
+// header element
+function BlogHeader() {
   return (
     <motion.div
       className="flex items-center border-b py-9"

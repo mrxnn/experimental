@@ -1,28 +1,24 @@
 import Layout from "../components/Layout";
-import Articles from "../components/Articles";
-import { motion } from "framer-motion";
-import { getPosts } from "../lib/posts";
+import BlogPosts from "../components/BlogPost";
+import { getFrontMatters } from "../lib/mdx";
+import { PostMeta } from "../types/post";
 
-export default function Home({ posts }) {
+export default function Home({ posts }: { posts: PostMeta[] }) {
   return (
     <Layout>
-      <motion.p
-        className="tracking-widest text-xs uppercase opacity-50"
-        initial={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 0.5, translateY: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 4 * 0.15 }}>
-        10 Posts
-      </motion.p>
-      <Articles posts={posts} />
+      <BlogPosts posts={posts} />
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts();
+  const posts = await getFrontMatters("blog");
   return {
     props: {
-      posts,
+      posts: posts.sort(
+        (a, b) =>
+          Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+      ),
     },
   };
 }
