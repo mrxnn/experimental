@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-black text-white tracking-tight 2xl:text-lg;
+  }
   body::-webkit-scrollbar {
-    width: 8px;
+    @apply w-2;
   }
   body::-webkit-scrollbar-track {
-    background-color: #101010;
+    @apply bg-black;
   }
   body::-webkit-scrollbar-thumb {
-    background-color: #1c1c1c;
+    @apply bg-[#1c1c1c];
   }
 }
