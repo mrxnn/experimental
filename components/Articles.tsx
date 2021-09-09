@@ -37,7 +37,7 @@ export function ArticleHeader() {
       className="flex items-center border-b py-9"
       initial={{ opacity: 0, translateY: 20 }}
       animate={{ opacity: 1, translateY: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 4 * 0.15 }}>
+      transition={{ duration: 0.8, ease: "easeOut", delay: 5 * 0.15 }}>
       <p className="w-36 md:w-52">#</p>
       <p className="flex-1">Name</p>
       <svg
