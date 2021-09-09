@@ -18,7 +18,7 @@ export default function Navbar() {
             initial={{ translateY: 44 }}
             animate={{ translateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1 * 0.15 }}>
-            Software Engineer, <a href="#">BASIC®</a>
+            Software Engineer, <a href="#">UENO®</a>
           </motion.p>
         </motion.div>
 

@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import BlogPosts from "../components/BlogPost";
+import BlogPosts from "../components/BlogPosts";
 import { getFrontMatters } from "../lib/mdx";
 import { PostMeta } from "../types/post";
 
