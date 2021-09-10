@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { zeroPad } from "../lib/numbers";
 import { Post } from "../types/post";
+import { ArrowRight } from "./Icons";
+import Button from "./Button";
 
 export default function BlogPosts({ posts }: { posts: Post[] }) {
   return (
-    <div className="flex flex-col space-y-14 mb-32">
+    <div className="flex flex-col items-start space-y-14 mb-32">
       <motion.div
         className="flex"
         initial={{ opacity: 0, translateY: 20 }}
@@ -31,6 +33,8 @@ export default function BlogPosts({ posts }: { posts: Post[] }) {
           </div>
         </motion.div>
       ))}
+
+      <Button text="More Posts" icon={<ArrowRight />} />
     </div>
   );
 }
