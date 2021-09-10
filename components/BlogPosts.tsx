@@ -34,7 +34,7 @@ export default function BlogPosts({ posts }: { posts: Post[] }) {
         </motion.div>
       ))}
 
-      <Button text="More Posts" icon={<ArrowRight />} />
+      <Button className="ml-20" text="More Posts" icon={<ArrowRight />} />
     </div>
   );
 }

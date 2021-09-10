@@ -6,13 +6,13 @@
   body {
     @apply bg-black text-white tracking-tight;
   }
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     @apply w-2;
   }
-  body::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     @apply bg-black;
   }
-  body::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     @apply bg-white/5;
   }
 }

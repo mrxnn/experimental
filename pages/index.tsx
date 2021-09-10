@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import BlogPosts from "../components/BlogPosts";
 import { getMdx } from "../lib/mdx";
 import { Post } from "../types/post";
-import Projects from "../components/Projects";
 
 export default function Home({ posts }: { posts: Post[] }) {
   return (
