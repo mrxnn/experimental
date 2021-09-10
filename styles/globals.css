@@ -13,7 +13,7 @@
     @apply bg-black;
   }
   body::-webkit-scrollbar-thumb {
-    @apply bg-white bg-opacity-5;
+    @apply bg-white/5;
   }
 }
 
@@ -23,7 +23,7 @@
   }
   .tooltip {
     @apply text-xs pointer-events-none opacity-0 transition duration-200;
-    @apply bg-white bg-opacity-20;
+    @apply bg-white/20;
   }
   .has-tooltip:hover .tooltip {
     @apply opacity-100;
