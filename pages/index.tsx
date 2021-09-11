@@ -11,8 +11,8 @@ export default function Home({ posts }: { posts: Post[] }) {
   );
 }
 
-export async function getStaticProps() {
-  const posts: Post[] = await getMdx("blog");
+export function getStaticProps() {
+  const posts: Post[] = getMdx("blog");
   return {
     props: {
       posts: posts.sort(

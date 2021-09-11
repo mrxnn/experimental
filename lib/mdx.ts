@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from "fs";
 import { join, extname } from "path";
 import { Post } from "../types/post";
 
-export const getMdx = async (type: "blog" | "project") => {
+export const getMdx = (type: "blog" | "project") => {
   const PATH = join(process.cwd(), "data", type);
 
   return readdirSync(PATH)
