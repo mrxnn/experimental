@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { motion } from "framer-motion";
-import Hotkey from "./Hotkey";
+import Kbd, { Keys } from "./Kbd";
 import Command from "./Command";
 
-export default function Navbar() {
+const Navbar: FC<{}> = ({}) => {
   return (
     <div className="flex justify-between items-start">
       <div>
@@ -31,16 +32,18 @@ export default function Navbar() {
           </motion.p>
         </motion.div>
       </div>
-
+      {/* command menu */}
       <div className="flex items-center space-x-3">
         <motion.div
           initial={{ opacity: 0, translateY: 20 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}>
-          <Hotkey keys={["Cmd", "K"]} />
+          <Kbd keys={[Keys.Command, Keys.K]} variant="sm" />
         </motion.div>
         <Command />
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

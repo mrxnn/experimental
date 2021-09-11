@@ -1,9 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
+import {
+  FC,
+  Fragment,
+  useState,
+  useEffect,
+  ReactElement,
+  useContext,
+  createContext,
+} from "react";
+
 import { motion } from "framer-motion";
 import { Dialog, Transition } from "@headlessui/react";
-import { ArrowRight } from "./Icons";
 
-export default function Command() {
+import { ArrowRight } from "./Icons";
+import Kbd, { Keys } from "./Kbd";
+
+const Command: FC<{}> = ({}) => {
   let [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,16 +64,24 @@ export default function Command() {
       </Transition>
     </>
   );
-}
+};
 
-const Breadcrumb = ({ text }) => (
+export default Command;
+
+const Breadcrumb = ({ text }: { text: string }) => (
   <span className="bg-inked-700 text-inked-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
     {text}
   </span>
 );
 
-const Entry = ({ text, icon = <ArrowRight size={20} /> }) => {
-  const { entry, updateCurrentEntry } = React.useContext(EntryContext);
+interface EntryProps {
+  text: string;
+  kbd?: ReactElement;
+  icon?: ReactElement;
+}
+
+const Entry: FC<EntryProps> = ({ text, kbd, icon }) => {
+  const { entry, setEntry } = useContext(EntryContext);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -71,40 +90,33 @@ const Entry = ({ text, icon = <ArrowRight size={20} /> }) => {
 
   return (
     <div
-      onMouseEnter={() => updateCurrentEntry(text)}
-      className={`h-12 px-4 mx-2 flex items-center space-x-4 rounded-md transition-all duration-200 cursor-pointer ${
+      onMouseEnter={() => setEntry(text)}
+      className={`flex items-center h-12 px-4 mx-2 space-x-4 rounded-md transition-all duration-200 cursor-pointer ${
         active ? "text-white bg-inked-800" : "text-inked-500"
       }`}>
-      {icon}
-      <p className="translate-y-[2px]">{text}</p>
+      {icon ? <>{icon}</> : <ArrowRight />}
+      <p className="translate-y-[2px] flex-1">{text}</p>
+      {kbd && <>{kbd}</>}
     </div>
   );
 };
 
-const EntryGroup = ({ groupName, children }) => {
-  const EntryTitle = ({ title }) => (
-    <p className="text-inked-500 font-light px-3 my-2 tracking-normal text-xs">
-      {title}
-    </p>
-  );
+const EntryGroup: FC<{ groupName: string }> = ({ groupName, children }) => {
   return (
     <>
-      <EntryTitle title={groupName} />
+      <p className="text-inked-500 font-light px-3 my-2 tracking-normal text-xs">
+        {groupName}
+      </p>
       {children}
     </>
   );
 };
 
 // handle the state of each entry
-const EntryContext = React.createContext(null);
+const EntryContext = createContext(null);
 
 const CommandMenu = () => {
   const [entry, setEntry] = useState("Theme");
-
-  // update the highlighted entry
-  const updateCurrentEntry = (entryText: string) => {
-    setEntry(entryText);
-  };
 
   return (
     <div className="flex flex-col h-full">
@@ -122,15 +134,15 @@ const CommandMenu = () => {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto py-2">
-        <EntryContext.Provider value={{ entry, updateCurrentEntry }}>
+        <EntryContext.Provider value={{ entry, setEntry }}>
           {/* Theme section */}
           <EntryGroup groupName="Theme">
-            <Entry text="Theme" />
+            <Entry text="Theme" kbd={<Kbd keys={[Keys.Shift, Keys.T]} />} />
           </EntryGroup>
 
           {/* Navigation section */}
           <EntryGroup groupName="Navigation">
-            <Entry text="Index Page" />
+            <Entry text="Index Page" kbd={<Kbd keys={[Keys.H]} />} />
             <Entry text="About Me" />
             <Entry text="Case Studies" />
             <Entry text="Contact Me" />
@@ -138,7 +150,7 @@ const CommandMenu = () => {
 
           {/* External section */}
           <EntryGroup groupName="External">
-            <Entry text="Saved" />
+            <Entry text="Saved" kbd={<Kbd keys={[Keys.Shift, Keys.K]} />} />
             <Entry text="Twitter" />
             <Entry text="LinkedIn" />
             <Entry text="Playlists" />

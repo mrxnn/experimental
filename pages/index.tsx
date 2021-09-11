@@ -1,17 +1,20 @@
+import { FC } from "react";
 import Layout from "../components/Layout";
 import BlogPosts from "../components/BlogPosts";
 import { getMdx } from "../lib/mdx";
 import { Post } from "../types/post";
 
-export default function Home({ posts }: { posts: Post[] }) {
+const Home: FC<{ posts: Post[] }> = ({ posts }) => {
   return (
     <Layout>
       <BlogPosts posts={posts} />
     </Layout>
   );
-}
+};
 
-export function getStaticProps() {
+export default Home;
+
+export const getStaticProps = () => {
   const posts: Post[] = getMdx("blog");
   return {
     props: {
@@ -21,4 +24,4 @@ export function getStaticProps() {
       ),
     },
   };
-}
+};

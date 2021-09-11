@@ -1,7 +1,8 @@
+import { FC } from "react";
 import Head from "next/head";
 import Navbar from "./Navbar";
 
-export default function Layout({ children }) {
+const Layout: FC<{}> = ({ children }) => {
   return (
     <>
       <Head>
@@ -16,4 +17,6 @@ export default function Layout({ children }) {
       </div>
     </>
   );
-}
+};
+
+export default Layout;

@@ -1,4 +1,13 @@
-export default function Button({ text, icon, className = "", onClick = null }) {
+import { FC, ReactElement } from "react";
+
+interface ButtonProps {
+  text: string;
+  icon?: ReactElement;
+  className?: string;
+  onClick?: (e: any) => void;
+}
+
+const Button: FC<ButtonProps> = ({ text, icon, className, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -7,4 +16,6 @@ export default function Button({ text, icon, className = "", onClick = null }) {
       {icon}
     </button>
   );
-}
+};
+
+export default Button;
