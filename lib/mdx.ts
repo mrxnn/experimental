@@ -3,11 +3,7 @@ import { readdirSync, readFileSync } from "fs";
 import { join, extname } from "path";
 import { Post } from "../types/post";
 
-type DataType = {
-  type: "blog" | "project";
-};
-
-export async function getMdx(type: DataType["type"]) {
+export const getMdx = async (type: "blog" | "project") => {
   const PATH = join(process.cwd(), "data", type);
 
   return readdirSync(PATH)
@@ -18,4 +14,4 @@ export async function getMdx(type: DataType["type"]) {
       const slug = file.replace(".mdx", "");
       return { ...data, slug, content } as Post;
     });
-}
+};

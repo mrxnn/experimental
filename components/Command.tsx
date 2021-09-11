@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Dialog, Transition } from "@headlessui/react";
 import { ArrowRight } from "./Icons";
@@ -61,15 +61,25 @@ const Breadcrumb = ({ text }) => (
   </span>
 );
 
-const Entry = ({ text, icon = <ArrowRight size={20} />, isActive = false }) => (
-  <div
-    className={`h-12 px-4 mx-2 flex items-center space-x-4 rounded-md hover:text-white hover:bg-inked-800 transition-all duration-300 cursor-pointer ${
-      isActive ? "text-white bg-inked-800" : "text-inked-500"
-    }`}>
-    {icon}
-    <p className="translate-y-[2px]">{text}</p>
-  </div>
-);
+const Entry = ({ text, icon = <ArrowRight size={20} /> }) => {
+  const { entry, updateCurrentEntry } = React.useContext(EntryContext);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    setActive(entry === text);
+  }, [entry]);
+
+  return (
+    <div
+      onMouseEnter={() => updateCurrentEntry(text)}
+      className={`h-12 px-4 mx-2 flex items-center space-x-4 rounded-md transition-all duration-200 cursor-pointer ${
+        active ? "text-white bg-inked-800" : "text-inked-500"
+      }`}>
+      {icon}
+      <p className="translate-y-[2px]">{text}</p>
+    </div>
+  );
+};
 
 const EntryGroup = ({ groupName, children }) => {
   const EntryTitle = ({ title }) => (
@@ -85,10 +95,19 @@ const EntryGroup = ({ groupName, children }) => {
   );
 };
 
+// handle the state of each entry
+const EntryContext = React.createContext(null);
+
 const CommandMenu = () => {
+  const [entry, setEntry] = useState("Theme");
+
+  // update the highlighted entry
+  const updateCurrentEntry = (entryText: string) => {
+    setEntry(entryText);
+  };
+
   return (
     <div className="flex flex-col h-full">
-      {/* Heading */}
       <div className="p-3 border-b border-inked-700">
         <div className="flex space-x-2">
           <Breadcrumb text="Menu" />
@@ -103,26 +122,28 @@ const CommandMenu = () => {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto py-2">
-        {/* Theme section */}
-        <EntryGroup groupName="Theme">
-          <Entry text="Theme" isActive />
-        </EntryGroup>
+        <EntryContext.Provider value={{ entry, updateCurrentEntry }}>
+          {/* Theme section */}
+          <EntryGroup groupName="Theme">
+            <Entry text="Theme" />
+          </EntryGroup>
 
-        {/* Navigation section */}
-        <EntryGroup groupName="Navigation">
-          <Entry text="Index Page" />
-          <Entry text="About Me" />
-          <Entry text="Case Studies" />
-          <Entry text="Contact Me" />
-        </EntryGroup>
+          {/* Navigation section */}
+          <EntryGroup groupName="Navigation">
+            <Entry text="Index Page" />
+            <Entry text="About Me" />
+            <Entry text="Case Studies" />
+            <Entry text="Contact Me" />
+          </EntryGroup>
 
-        {/* External section */}
-        <EntryGroup groupName="External">
-          <Entry text="Saved" />
-          <Entry text="Twitter" />
-          <Entry text="LinkedIn" />
-          <Entry text="Playlists" />
-        </EntryGroup>
+          {/* External section */}
+          <EntryGroup groupName="External">
+            <Entry text="Saved" />
+            <Entry text="Twitter" />
+            <Entry text="LinkedIn" />
+            <Entry text="Playlists" />
+          </EntryGroup>
+        </EntryContext.Provider>
       </div>
     </div>
   );
