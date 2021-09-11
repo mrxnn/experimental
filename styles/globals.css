@@ -4,13 +4,13 @@
 
 @layer base {
   body {
-    @apply bg-black text-white tracking-tight;
+    @apply bg-inked-900 text-white tracking-tight;
   }
   *::-webkit-scrollbar {
     @apply w-2;
   }
   *::-webkit-scrollbar-track {
-    @apply bg-black;
+    @apply bg-inked-900;
   }
   *::-webkit-scrollbar-thumb {
     @apply bg-white/5;

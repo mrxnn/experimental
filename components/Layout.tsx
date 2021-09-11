@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         <Navbar />
       </div>
       <div className="max-w-3xl mx-auto px-5 mt-[60vh]">{children}</div>
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-black">
+      <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-inked-900">
         &nbsp;
       </div>
     </>
