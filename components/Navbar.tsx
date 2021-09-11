@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Hotkey from "./Hotkey";
+import Command from "./Command";
 
 export default function Navbar() {
   return (
@@ -38,16 +39,7 @@ export default function Navbar() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}>
           <Hotkey keys={["Cmd", "K"]} />
         </motion.div>
-        <motion.button
-          initial={{ opacity: 0, translateY: 20 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
-          className="has-tooltip text-xl relative">
-          <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
-            Menu
-          </div>
-          ⌘
-        </motion.button>
+        <Command />
       </div>
     </div>
   );
