@@ -6,11 +6,12 @@ import React, {
   useState,
 } from "react";
 import { ArrowRight } from "../Icons";
+import Kbd, { Keys } from "../Kbd";
 import { CommandMenuContext } from "./CommandMenu.Context";
 
 interface EntryProps {
   text: string;
-  kbd?: ReactElement;
+  kbd?: Keys[];
   icon?: ReactElement;
 }
 
@@ -30,7 +31,7 @@ const CommandMenuEntry: FC<EntryProps> = ({ text, kbd, icon }) => {
       }`}>
       {icon ? <>{icon}</> : <ArrowRight />}
       <p className="translate-y-[2px] flex-1">{text}</p>
-      {kbd && <>{kbd}</>}
+      {kbd && <Kbd keys={kbd} />}
     </div>
   );
 };

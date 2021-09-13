@@ -1,9 +1,48 @@
 import { useState } from "react";
-import Kbd, { Keys } from "../Kbd";
+import { Keys } from "../Kbd";
 import Breadcrumb from "./Breadcrumb";
 import { CommandMenuContext } from "./CommandMenu.Context";
 import CommandMenuEntry from "./CommandMenuEntry";
 import CommandMenuGroup from "./CommandMenuGroup";
+
+interface EntryGroup {
+  groupId: number;
+  groupName: string;
+  entries: Entry[];
+}
+
+interface Entry {
+  entryId: number;
+  entryName: string;
+  kbd?: Keys[];
+}
+
+const groups: EntryGroup[] = [
+  {
+    groupId: 1,
+    groupName: "Theme",
+    entries: [{ entryId: 1, entryName: "Theme", kbd: [Keys.Shift, Keys.T] }],
+  },
+  {
+    groupId: 2,
+    groupName: "Navigation",
+    entries: [
+      { entryId: 1, entryName: "Index Page" },
+      { entryId: 2, entryName: "Blog Posts" },
+      { entryId: 3, entryName: "About Me" },
+      { entryId: 4, entryName: "Contact Me" },
+    ],
+  },
+  {
+    groupId: 3,
+    groupName: "External",
+    entries: [
+      { entryId: 1, entryName: "Twitter" },
+      { entryId: 2, entryName: "LinkedIn" },
+      { entryId: 3, entryName: "Inspiration" },
+    ],
+  },
+];
 
 const CommandMenuContent = () => {
   const [activeEntry, setActiveEntry] = useState("Theme");
@@ -22,32 +61,15 @@ const CommandMenuContent = () => {
         />
       </div>
 
-      {/* Content */}
       <div className="flex-1 overflow-y-auto py-2">
         <CommandMenuContext.Provider value={{ activeEntry, setActiveEntry }}>
-          <CommandMenuGroup groupName="Theme">
-            <CommandMenuEntry
-              text="Theme"
-              kbd={<Kbd keys={[Keys.Shift, Keys.T]} />}
-            />
-          </CommandMenuGroup>
-
-          <CommandMenuGroup groupName="Navigation">
-            <CommandMenuEntry text="Index Page" kbd={<Kbd keys={[Keys.H]} />} />
-            <CommandMenuEntry text="About Me" />
-            <CommandMenuEntry text="Case Studies" />
-            <CommandMenuEntry text="Contact Me" />
-          </CommandMenuGroup>
-
-          <CommandMenuGroup groupName="External">
-            <CommandMenuEntry
-              text="Saved"
-              kbd={<Kbd keys={[Keys.Shift, Keys.K]} />}
-            />
-            <CommandMenuEntry text="Twitter" />
-            <CommandMenuEntry text="LinkedIn" />
-            <CommandMenuEntry text="Playlists" />
-          </CommandMenuGroup>
+          {groups.map(({ groupId, groupName, entries }) => (
+            <CommandMenuGroup key={groupId} groupName={groupName}>
+              {entries.map(({ entryId, entryName, kbd }) => (
+                <CommandMenuEntry key={entryId} text={entryName} kbd={kbd} />
+              ))}
+            </CommandMenuGroup>
+          ))}
         </CommandMenuContext.Provider>
       </div>
     </div>
