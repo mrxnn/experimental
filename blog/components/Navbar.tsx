@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import Kbd, { Keys } from "./Kbd";
-import CommandMenu from "./Command";
+import CommandMenu from "./Command/CommandMenu";
 
 const Navbar: FC<{}> = ({}) => {
   return (
