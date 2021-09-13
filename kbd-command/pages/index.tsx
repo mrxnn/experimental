@@ -1,8 +1,8 @@
 import { FC } from "react";
-import Layout from "../ui/Layout";
-import BlogPosts from "../ui/BlogPosts";
-import { getMdx } from "../lib/mdx";
-import { Post } from "../types/post";
+import Layout from "@/ui/Layout";
+import BlogPosts from "@/ui/BlogPosts";
+import { getMdx } from "@/lib/mdx";
+import { Post } from "@/types/post";
 
 const Home: FC<{ posts: Post[] }> = ({ posts }) => {
   return (

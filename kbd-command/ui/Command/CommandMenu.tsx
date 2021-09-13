@@ -2,7 +2,7 @@ import { FC, Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import { Dialog, Transition } from "@headlessui/react";
 
-import CommandMenuContent from "./CommandMenuContent";
+import CommandMenuContent from "@/ui/Command/CommandMenuContent";
 
 const CommandMenu: FC<{}> = ({}) => {
   let [isOpen, setIsOpen] = useState(false);

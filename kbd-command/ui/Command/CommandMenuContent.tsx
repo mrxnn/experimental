@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Keys } from "../Kbd";
-import Breadcrumb from "./Breadcrumb";
-import { CommandMenuContext } from "./CommandMenu.Context";
-import CommandMenuEntry from "./CommandMenuEntry";
-import CommandMenuGroup from "./CommandMenuGroup";
+import { Keys } from "@/ui/Kbd";
+import Breadcrumb from "@/ui/Command/Breadcrumb";
+import { CommandMenuContext } from "@/ui/Command/CommandMenu.Context";
+import CommandMenuEntry from "@/ui/Command/CommandMenuEntry";
+import CommandMenuGroup from "@/ui/Command/CommandMenuGroup";
 
 interface EntryGroup {
   groupId: number;

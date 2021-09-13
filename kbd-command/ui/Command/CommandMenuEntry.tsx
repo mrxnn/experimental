@@ -6,9 +6,9 @@ import React, {
   useState,
 } from "react";
 import cx from "clsx";
-import { ArrowRight } from "../Icons";
-import Kbd, { Keys } from "../Kbd";
-import { CommandMenuContext } from "./CommandMenu.Context";
+import { ArrowRight } from "@/ui/Icons";
+import Kbd, { Keys } from "@/ui/Kbd";
+import { CommandMenuContext } from "@/ui/Command/CommandMenu.Context";
 
 interface EntryProps {
   text: string;

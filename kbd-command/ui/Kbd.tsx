@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ShiftKey } from "./Icons";
+import { ShiftKey } from "@/ui/Icons";
 
 // list of keys
 export enum Keys {

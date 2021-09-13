@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { zeroPad } from "../lib/numbers";
-import { Post } from "../types/post";
-import { ArrowRight } from "./Icons";
-import Button from "./Button";
+import { zeroPad } from "@/lib/numbers";
+import { Post } from "@/types/post";
+import { ArrowRight } from "@/ui/Icons";
+import Button from "@/ui/Button";
 
 export default function BlogPosts({ posts }: { posts: Post[] }) {
   return (
