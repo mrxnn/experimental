@@ -1,4 +1,4 @@
-Things I try out for fun, leaning and .... science 😎
+Things I try out for fun, learning and .... science 😎
 
 ### Reminder
 
