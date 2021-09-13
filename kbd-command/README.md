@@ -1,3 +1,3 @@
-## mayurarx.com
+### Command + K Menu
 
-Personal website - new version
+Command menu inspired by [Vercel Dashboard](https://vercel.com/dashboard)
