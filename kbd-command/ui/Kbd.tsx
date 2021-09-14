@@ -8,6 +8,9 @@ export enum Keys {
   H = "H",
   Shift = "Shift",
   Command = "Cmd",
+  ArrowDown = "ArrowDown",
+  ArrowUp = "ArrowUp",
+  Enter = "Enter",
 }
 
 interface KbdProps {

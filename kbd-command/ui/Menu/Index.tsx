@@ -1,8 +1,9 @@
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { ArrowRight } from "@/ui/Icons";
 import Kbd, { Keys } from "@/ui/Kbd";
 import Window from "@/ui/Menu/Window";
 import { ListItem, initialList } from "@/ui/Menu/MenuData";
+import cx from "clsx";
 
 export const Menu: FC<{}> = ({}) => {
   return (
@@ -15,12 +16,19 @@ export const Menu: FC<{}> = ({}) => {
 };
 
 import { useMenu, MenuContext } from "./Menu.context";
+import useKeyPress from "@/lib/useKeyPress";
 
 export const MenuContent: FC<{}> = ({}) => {
   const [menuList, setMenuList] = useState<ListItem[]>(initialList);
+  const [activeMenuText, setActiveMenuText] = useState("Theme");
 
   // stores a snapshot of the current menuList - basically a stack of snapshots
+  // each snapshot is an array of list items, and we store those in another array
   const [historyList, setHistoryList] = useState<ListItem[][]>([]);
+
+  // keyboard
+  const downPress = useKeyPress(Keys.ArrowDown);
+  const upPress = useKeyPress(Keys.ArrowUp);
 
   const goBack = () => {
     const last = historyList.pop();
@@ -28,6 +36,14 @@ export const MenuContent: FC<{}> = ({}) => {
       setMenuList(last);
     }
   };
+
+  useEffect(() => {
+    if (downPress) console.log("Down");
+  }, [downPress]);
+
+  useEffect(() => {
+    if (upPress) console.log("Up");
+  }, [upPress]);
 
   return (
     <div className="flex flex-col h-full">
@@ -44,7 +60,14 @@ export const MenuContent: FC<{}> = ({}) => {
       </div>
 
       <MenuContext.Provider
-        value={{ menuList, setMenuList, historyList, setHistoryList }}>
+        value={{
+          menuList,
+          setMenuList,
+          historyList,
+          setHistoryList,
+          activeMenuText,
+          setActiveMenuText,
+        }}>
         <div className="flex-1 overflow-y-auto py-2">
           {menuList.map((menu, index) => {
             if (!menu.type || menu.type === "menu") {
@@ -55,8 +78,6 @@ export const MenuContent: FC<{}> = ({}) => {
           })}
         </div>
       </MenuContext.Provider>
-
-      <button onClick={goBack}>Go Back</button>
     </div>
   );
 };
@@ -66,10 +87,18 @@ interface MenuItemProps {
   kbd?: Keys[];
   icon?: ReactElement;
   inner?: ListItem[];
+  active?: boolean;
 }
 
 const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
-  const { menuList, setMenuList, historyList, setHistoryList } = useMenu();
+  const {
+    menuList,
+    setMenuList,
+    historyList,
+    setHistoryList,
+    activeMenuText,
+    setActiveMenuText,
+  } = useMenu();
 
   const handleClick = () => {
     if (inner) {
@@ -77,13 +106,22 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
       setHistoryList([...historyList, menuList]);
       // set the current menu list
       setMenuList(inner);
+      // set the first item in the list array default active item
+      setActiveMenuText(inner[0].text);
     }
   };
 
   return (
     <div
-      className="flex items-center h-12 px-4 mx-2 space-x-4 rounded-md transition-all duration-200 cursor-pointer text-inked-500"
-      onClick={handleClick}>
+      onClick={handleClick}
+      onMouseEnter={() => setActiveMenuText(text)} // TODO: debounce
+      className={cx(
+        "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer transition-colors duration-75",
+        {
+          "text-white bg-inked-800": activeMenuText === text,
+          "text-inked-500": activeMenuText !== text,
+        }
+      )}>
       {icon ? <>{icon}</> : <ArrowRight />}
       <p className="translate-y-[2px] flex-1">{text}</p>
       {kbd && <Kbd keys={kbd} />}

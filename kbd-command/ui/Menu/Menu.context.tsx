@@ -6,6 +6,8 @@ interface MenuContextType {
   setMenuList: (value: ListItem[]) => void;
   historyList: ListItem[][];
   setHistoryList: (value: ListItem[][]) => void;
+  activeMenuText: string;
+  setActiveMenuText: (value: string) => void;
 }
 
 export const MenuContext = createContext<MenuContextType>(null);

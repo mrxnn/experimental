@@ -4,6 +4,10 @@ export interface ListItem {
   inner?: ListItem[];
 }
 
+// reminder ->
+// don't use same text within the same nesting level.
+// we rely on the text for differentiating the active menu item.
+// TODO: introduce a unique Id for each list item.
 export const initialList: ListItem[] = [
   {
     text: "Theme",
@@ -26,4 +30,8 @@ export const initialList: ListItem[] = [
   },
   { text: "About Me" },
   { text: "Contact Me" },
+  { text: "Navigation", type: "title" },
+  { text: "Twitter" },
+  { text: "LinkedIn" },
+  { text: "Inspiration" },
 ];
