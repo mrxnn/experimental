@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import Kbd, { Keys } from "@/ui/Kbd";
-import CommandMenu from "@/ui/Command/CommandMenu";
+import { Menu } from "@/ui/Menu/Index";
+import CommandMenu from "./Command/CommandMenu";
 
 const Navbar: FC<{}> = ({}) => {
   return (
@@ -40,6 +41,7 @@ const Navbar: FC<{}> = ({}) => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}>
           <Kbd keys={[Keys.Command, Keys.K]} variant="sm" />
         </motion.div>
+        <Menu />
         <CommandMenu />
       </div>
     </div>

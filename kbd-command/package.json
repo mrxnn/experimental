@@ -13,6 +13,7 @@
     "@prisma/client": "^3.0.2",
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.17",
+    "lodash": "^4.17.21",
     "mdx-bundler": "^6.0.1",
     "next": "11.1.2",
     "react": "17.0.2",
@@ -20,6 +21,7 @@
     "swr": "^1.0.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.172",
     "@types/react": "^17.0.20",
     "autoprefixer": "^10.3.4",
     "eslint": "7.32.0",
