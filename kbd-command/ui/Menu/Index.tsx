@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@/ui/Icons";
 import Kbd, { Keys } from "@/ui/Kbd";
 import Window from "@/ui/Menu/Window";
@@ -108,7 +108,7 @@ export const MenuContent: FC<{}> = ({}) => {
         <div className="flex-1 overflow-y-auto py-2">
           {menuList.map((menu, index) => {
             if (!menu.type || menu.type === "menu") {
-              return <MenuItem key={index} {...menu} />;
+              return <MenuItem key={index} {...menu} index={index} />;
             } else {
               return <MenuTitle key={index} {...menu} />;
             }
@@ -125,9 +125,10 @@ interface MenuItemProps {
   icon?: ReactElement;
   inner?: ListItem[];
   active?: boolean;
+  index?: number;
 }
 
-const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
+const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
   const {
     menuList,
     setMenuList,
@@ -136,6 +137,8 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
     activeMenuText,
     setActiveMenuText,
   } = useMenu();
+
+  const menuItemRef = useRef(null);
 
   const handleClick = () => {
     if (inner) {
@@ -148,12 +151,20 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
     }
   };
 
+  useEffect(() => {
+    if (activeMenuText === text) {
+      menuItemRef.current.focus();
+    }
+  }, [activeMenuText]);
+
   return (
     <div
+      tabIndex={index}
+      ref={menuItemRef}
       onClick={handleClick}
       onMouseEnter={() => setActiveMenuText(text)} // TODO: debounce
       className={cx(
-        "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer",
+        "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer focus:outline-none",
         {
           "text-white bg-inked-800": activeMenuText === text,
           "text-inked-500": activeMenuText !== text,
