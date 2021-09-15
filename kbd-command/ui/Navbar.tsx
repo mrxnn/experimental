@@ -2,7 +2,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import Kbd, { Keys } from "@/ui/Kbd";
 import { Menu } from "@/ui/Menu/Index";
-import CommandMenu from "./Command/CommandMenu";
 
 const Navbar: FC<{}> = ({}) => {
   return (
@@ -42,7 +41,6 @@ const Navbar: FC<{}> = ({}) => {
           <Kbd keys={[Keys.Command, Keys.K]} variant="sm" />
         </motion.div>
         <Menu />
-        <CommandMenu />
       </div>
     </div>
   );
