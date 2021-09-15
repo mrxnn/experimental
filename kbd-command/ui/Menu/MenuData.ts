@@ -10,7 +10,7 @@ export interface ListItem {
 // TODO: introduce a unique Id for each list item.
 export const initialList: ListItem[] = [
   {
-    text: "Theme",
+    text: "Themes",
     type: "title",
   },
   {

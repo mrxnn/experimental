@@ -29,21 +29,58 @@ export const MenuContent: FC<{}> = ({}) => {
   // keyboard
   const downPress = useKeyPress(Keys.ArrowDown);
   const upPress = useKeyPress(Keys.ArrowUp);
-
-  const goBack = () => {
-    const last = historyList.pop();
-    if (last) {
-      setMenuList(last);
-    }
-  };
+  const enterPress = useKeyPress(Keys.Enter);
+  const backspacePress = useKeyPress(Keys.Backspace);
 
   useEffect(() => {
-    if (downPress) console.log("Down");
+    if (menuList.length && downPress) {
+      const activeIdx = menuList.findIndex((m) => m.text === activeMenuText);
+      let newIdx = activeIdx < menuList.length - 1 ? activeIdx + 1 : activeIdx;
+      // ignore the menu titles
+      if (menuList[newIdx].type === "title") newIdx++;
+      setActiveMenuText(menuList[newIdx].text);
+    }
   }, [downPress]);
 
   useEffect(() => {
-    if (upPress) console.log("Up");
+    if (menuList.length && upPress) {
+      const activeIdx = menuList.findIndex((m) => m.text === activeMenuText);
+      let newIdx = activeIdx > 0 ? activeIdx - 1 : activeIdx;
+      // ignore the menu titles
+      if (menuList[newIdx].type === "title") {
+        newIdx--;
+        // TRUE when the first element of the array is of type Title.
+        // we fall back to the first menu item.
+        if (!menuList[newIdx]) newIdx = 1;
+      }
+      setActiveMenuText(menuList[newIdx].text);
+    }
   }, [upPress]);
+
+  useEffect(() => {
+    if (menuList.length && enterPress) {
+      const activeMenu = menuList.find((m) => m.text === activeMenuText);
+      if (activeMenu && activeMenu.inner) {
+        // stack.push()
+        setHistoryList([...historyList, menuList]);
+        setMenuList(activeMenu.inner);
+        // set the first item in the list as default active item
+        setActiveMenuText(activeMenu.inner[0].text);
+      }
+    }
+  }, [enterPress]);
+
+  useEffect(() => {
+    if (backspacePress) {
+      const last = historyList.pop();
+      if (last) {
+        setMenuList(last);
+        // set the first item in the list as default active item
+        if (last[0].type !== "title") setActiveMenuText(last[0].text);
+        else setActiveMenuText(last[1].text);
+      }
+    }
+  }, [backspacePress]);
 
   return (
     <div className="flex flex-col h-full">
@@ -106,7 +143,7 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
       setHistoryList([...historyList, menuList]);
       // set the current menu list
       setMenuList(inner);
-      // set the first item in the list array default active item
+      // set the first item in the list as default active item
       setActiveMenuText(inner[0].text);
     }
   };
@@ -116,7 +153,7 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner }) => {
       onClick={handleClick}
       onMouseEnter={() => setActiveMenuText(text)} // TODO: debounce
       className={cx(
-        "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer transition-colors duration-75",
+        "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer",
         {
           "text-white bg-inked-800": activeMenuText === text,
           "text-inked-500": activeMenuText !== text,

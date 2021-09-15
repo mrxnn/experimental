@@ -11,6 +11,7 @@ export enum Keys {
   ArrowDown = "ArrowDown",
   ArrowUp = "ArrowUp",
   Enter = "Enter",
+  Backspace = "Backspace",
 }
 
 interface KbdProps {
