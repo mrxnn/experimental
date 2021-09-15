@@ -6,15 +6,6 @@
   body {
     @apply bg-inked-900 text-white tracking-tight;
   }
-  *::-webkit-scrollbar {
-    @apply w-2;
-  }
-  *::-webkit-scrollbar-track {
-    @apply bg-inked-900;
-  }
-  *::-webkit-scrollbar-thumb {
-    @apply bg-white/5;
-  }
 }
 
 @layer components {
@@ -28,4 +19,12 @@
   .has-tooltip:hover .tooltip {
     @apply opacity-100;
   }
+}
+
+.command [data-command-item] {
+  @apply text-inked-500 mx-2 rounded-md;
+}
+
+.command [data-command-item][aria-selected] {
+  @apply text-white bg-inked-800;
 }
