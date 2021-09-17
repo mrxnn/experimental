@@ -43,7 +43,7 @@ const Window: FC<{}> = ({ children }) => {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <div className="bg-inked-900 border border-inked-700 w-[640px] h-[408px] transform mt-[180px] shadow-xl rounded-lg">
+              <div className="bg-inked-900 border border-inked-700 w-[640px] h-full  transform mt-[180px] shadow-xl rounded-lg">
                 {children}
               </div>
             </Transition.Child>
