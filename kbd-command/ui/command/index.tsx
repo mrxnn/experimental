@@ -29,13 +29,14 @@ const CommandContext = createContext(null);
 
 const CommandMenu: FC<{}> = memo(({}) => {
   const commandProps = useCommand();
+  const { search } = commandProps;
   const [pages, setPages] = usePages(commandProps, TopLevelCommands);
   const Items = pages[pages.length - 1];
   const backspacePress = useKeyPress(Keys.Backspace);
 
   // go back
   useEffect(() => {
-    if (backspacePress) {
+    if (backspacePress && !search) {
       setPages([...pages, TopLevelCommands]);
     }
   }, [backspacePress]);
