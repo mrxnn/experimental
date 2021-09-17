@@ -8,6 +8,7 @@ import {
   useContext,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import Window from "../Menu/Window";
 import { ArrowRight } from "../Icons";
@@ -33,10 +34,14 @@ const CommandMenu: FC<{}> = memo(({}) => {
   const [pages, setPages] = usePages(commandProps, TopLevelCommands);
   const Items = pages[pages.length - 1];
   const backspacePress = useKeyPress(Keys.Backspace);
+  const [breadcrumbs, setBreadcrumbs] = useState<string[]>(["Menu"]);
 
   // go back
   useEffect(() => {
     if (backspacePress && !search) {
+      if (breadcrumbs.length > 1) {
+        setBreadcrumbs((bks) => bks.splice(-1));
+      }
       setPages([...pages, TopLevelCommands]);
     }
   }, [backspacePress]);
@@ -62,8 +67,9 @@ const CommandMenu: FC<{}> = memo(({}) => {
           ref={commandRef}>
           <div className="p-3 border-b border-inked-700">
             <div className="flex space-x-2">
-              <Breadcrumb text="Menu" />
-              <Breadcrumb text="Work" />
+              {breadcrumbs.map((bread, index) => (
+                <Breadcrumb key={`${bread}-${index}`} text={bread} />
+              ))}
             </div>
             <CommandInput
               placeholder="Finnnd..."
@@ -72,7 +78,8 @@ const CommandMenu: FC<{}> = memo(({}) => {
           </div>
           <div className="flex-1 py-2">
             <CommandList className="max-h-[304px] overflow-y-auto">
-              <CommandContext.Provider value={{ pages, setPages }}>
+              <CommandContext.Provider
+                value={{ pages, setPages, breadcrumbs, setBreadcrumbs }}>
                 <Items />
               </CommandContext.Provider>
             </CommandList>
@@ -105,11 +112,13 @@ const MenuItem: FC<MenuItemProps> = ({ value, text, kbd, icon, callback }) => {
   );
 };
 
-const Breadcrumb = ({ text }: { text: string }) => (
-  <span className="bg-inked-700 text-inked-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
-    {text}
-  </span>
-);
+const Breadcrumb = ({ text }: { text: string }) => {
+  return (
+    <span className="bg-inked-700 text-inked-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
+      {text}
+    </span>
+  );
+};
 
 const MenuTitle = ({ text }: { text: string }) => (
   <p className="text-inked-500 font-light px-3 my-2 tracking-normal text-xs">
@@ -118,7 +127,8 @@ const MenuTitle = ({ text }: { text: string }) => (
 );
 
 export const TopLevelCommands: FC<{}> = ({}) => {
-  const { pages, setPages } = useContext(CommandContext);
+  const { pages, setPages, breadcrumbs, setBreadcrumbs } =
+    useContext(CommandContext);
 
   return (
     <>
@@ -126,7 +136,10 @@ export const TopLevelCommands: FC<{}> = ({}) => {
         value="A"
         text="Theme"
         kbd={[Keys.Shift, Keys.T]}
-        callback={() => setPages([...pages, ThemeCommands])}
+        callback={() => {
+          setBreadcrumbs([...breadcrumbs, "Theme"]);
+          setPages([...pages, ThemeCommands]);
+        }}
       />
       <CommandGroup heading={<MenuTitle text="Navigation" />}>
         <MenuItem value="B" text="Index Page" />
