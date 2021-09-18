@@ -10,9 +10,9 @@ import {
   useRef,
   useState,
 } from "react";
-import Window from "../Menu/Window";
-import { ArrowRight } from "../Icons";
-import Kbd, { Keys } from "../Kbd";
+import Window from "@/ui/menu/Window";
+import { ArrowRight } from "@/ui/Icons";
+import Kbd, { Keys } from "@/ui/Kbd";
 import useKeyPress from "@/lib/useKeyPress";
 
 import {
