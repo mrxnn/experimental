@@ -2,6 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import Kbd, { Keys } from "@/ui/Kbd";
 import CommandMenu from "@/ui/command";
+import ThemeToggle from "@/ui/ThemeToggle";
 
 const Navbar: FC<{}> = ({}) => {
   return (
@@ -31,6 +32,10 @@ const Navbar: FC<{}> = ({}) => {
             Kandy, Sri Lanka
           </motion.p>
         </motion.div>
+      </div>
+      {/* theme toggle */}
+      <div className="ml-auto hidden md:flex items-center mr-60">
+        <ThemeToggle />
       </div>
       {/* command menu */}
       <div className="flex items-center space-x-3">

@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "mdx-bundler": "^6.0.1",
     "next": "11.1.2",
+    "next-themes": "^0.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "^1.0.0",
