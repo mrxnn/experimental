@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply dark:bg-black dark:text-gray-100 text-gray-900 bg-gray-50 tracking-tight;
+    @apply dark:bg-black dark:text-gray-100 tracking-tight;
   }
 }
 
@@ -23,7 +23,7 @@
 
 /*cmdk*/
 .command [data-command-item] {
-  @apply text-gray-400 dark:text-gray-500 mx-2 rounded-md;
+  @apply text-gray-500 dark:text-gray-500 mx-2 rounded-md;
 }
 
 .command [data-command-item][aria-selected] {

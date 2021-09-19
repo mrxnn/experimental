@@ -20,7 +20,7 @@ const Window: FC<{ isOpen: boolean; setIsOpen: (value: boolean) => void }> = ({
               leave="ease-in duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0">
-              <Dialog.Overlay className="fixed inset-0 bg-white/80 dark:bg-black/80" />
+              <Dialog.Overlay className="fixed inset-0 bg-white/80 dark:bg-[#000] dark:bg-opacity-80" />
             </Transition.Child>
 
             {/* Actual content that goes inside */}

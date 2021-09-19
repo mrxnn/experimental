@@ -1,6 +1,6 @@
 import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@/ui/Icons";
-import Keystroke, { Keys } from "@/ui/Keystroke";
+import Keystroke from "@/ui/Keystroke";
 import Window from "@/ui/Window";
 import { ListItem, initialList } from "@/ui/menu/MenuData";
 import cx from "clsx";
@@ -42,10 +42,10 @@ export const MenuContent: FC<{}> = ({}) => {
   const [historyList, setHistoryList] = useState<ListItem[][]>([]);
 
   // keyboard
-  const downPress = useKeyPress(Keys.ArrowDown);
-  const upPress = useKeyPress(Keys.ArrowUp);
-  const enterPress = useKeyPress(Keys.Enter);
-  const backspacePress = useKeyPress(Keys.Backspace);
+  const downPress = useKeyPress("ArrowDown");
+  const upPress = useKeyPress("ArrowUp");
+  const enterPress = useKeyPress("Enter");
+  const backspacePress = useKeyPress("Backspace");
 
   useEffect(() => {
     if (menuList.length && downPress) {
@@ -99,7 +99,7 @@ export const MenuContent: FC<{}> = ({}) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-3 border-b border-gray-700">
+      <div className="p-3 border-b border-gray-200 dark:border-gray-700/60">
         <div className="flex space-x-2">
           <Breadcrumb text="Menu" />
           <Breadcrumb text="Work" />
@@ -120,7 +120,7 @@ export const MenuContent: FC<{}> = ({}) => {
           activeMenuText,
           setActiveMenuText,
         }}>
-        <div className="flex-1 overflow-y-auto py-2">
+        <div className="flex-1 max-h-[304px] overflow-y-auto py-2">
           {menuList.map((menu, index) => {
             if (!menu.type || menu.type === "menu") {
               return <MenuItem key={index} {...menu} index={index} />;
@@ -136,7 +136,7 @@ export const MenuContent: FC<{}> = ({}) => {
 
 interface MenuItemProps {
   text: string;
-  kbd?: Keys[];
+  kbd?: string[];
   icon?: ReactElement;
   inner?: ListItem[];
   active?: boolean;
@@ -181,8 +181,9 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
       className={cx(
         "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer focus:outline-none",
         {
-          "text-white bg-gray-800": activeMenuText === text,
-          "text-gray-500": activeMenuText !== text,
+          "text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-800/60":
+            activeMenuText === text,
+          "text-gray-400 dark:text-gray-500": activeMenuText !== text,
         }
       )}>
       {icon ? <>{icon}</> : <ArrowRight />}
@@ -193,7 +194,7 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
 };
 
 const Breadcrumb = ({ text }: { text: string }) => (
-  <span className="bg-gray-700 text-gray-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
+  <span className="bg-gray-200 dark:bg-gray-800 dark:text-gray-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
     {text}
   </span>
 );
