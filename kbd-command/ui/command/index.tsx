@@ -78,10 +78,7 @@ const CommandMenu: FC<{}> = memo(({}) => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsCommandOpen(true)}
-        className="has-tooltip text-xl relative">
-        <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
-          Menu
-        </div>
+        className="focus:bg-gray-200 dark:focus:bg-gray-800 px-1 -mr-1 rounded outline-none focus:ring">
         <span className="font-semibold text-lg">⌘</span>
       </button>
 

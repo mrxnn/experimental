@@ -11,6 +11,7 @@ const ThemeToggle: FC<{}> = ({}) => {
 
   return (
     <button
+      className="focus:bg-gray-200 dark:focus:bg-gray-800 px-2 py-1 rounded outline-none focus:ring"
       aria-label="Toggle Theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
       {mounted && (
