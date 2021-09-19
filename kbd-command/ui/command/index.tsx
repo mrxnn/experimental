@@ -11,7 +11,6 @@ import {
   useState,
 } from "react";
 
-import { motion } from "framer-motion";
 import { ArrowRight } from "@/ui/Icons";
 import Window from "@/ui/Window";
 import Keystroke from "@/ui/Keystroke";
@@ -77,17 +76,14 @@ const CommandMenu: FC<{}> = memo(({}) => {
   return (
     <div>
       {/* Trigger Button */}
-      <motion.button
-        initial={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
+      <button
         onClick={() => setIsCommandOpen(true)}
         className="has-tooltip text-xl relative">
         <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
           Menu
         </div>
         <span className="font-semibold text-lg">⌘</span>
-      </motion.button>
+      </button>
 
       {/* Command Dialog */}
       <Window isOpen={isCommandOpen} setIsOpen={setIsCommandOpen}>

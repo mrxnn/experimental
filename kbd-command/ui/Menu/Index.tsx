@@ -10,17 +10,14 @@ export const Menu: FC<{}> = ({}) => {
 
   return (
     <>
-      <motion.button
-        initial={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
+      <button
         onClick={() => setIsCommandOpen(true)}
         className="has-tooltip text-xl relative">
         <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
           Menu
         </div>
         <span className="font-semibold text-lg">⌘</span>
-      </motion.button>
+      </button>
 
       <Window isOpen={isCommandOpen} setIsOpen={setIsCommandOpen}>
         <MenuContent />
@@ -31,7 +28,6 @@ export const Menu: FC<{}> = ({}) => {
 
 import { useMenu, MenuContext } from "@/ui/menu/Menu.context";
 import useKeyPress from "@/lib/useKeyPress";
-import { motion } from "framer-motion";
 
 export const MenuContent: FC<{}> = ({}) => {
   const [menuList, setMenuList] = useState<ListItem[]>(initialList);
