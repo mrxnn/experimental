@@ -12,7 +12,7 @@ import {
 } from "react";
 import Window from "@/ui/menu/Window";
 import { ArrowRight } from "@/ui/Icons";
-import Kbd, { Keys } from "@/ui/Kbd";
+import Keystroke, { Keys } from "@/ui/Keystroke";
 import useKeyPress from "@/lib/useKeyPress";
 
 import {
@@ -106,7 +106,7 @@ const MenuItem: FC<MenuItemProps> = ({ value, text, kbd, icon, callback }) => {
       <div className="flex items-center h-12 px-4 space-x-4 rounded-md cursor-pointer focus:outline-none">
         {icon ? <>{icon}</> : <ArrowRight />}
         <p className="translate-y-[2px] flex-1">{text}</p>
-        {kbd && <Kbd keys={kbd} />}
+        {kbd && <Keystroke keys={kbd} />}
       </div>
     </CommandItem>
   );

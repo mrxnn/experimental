@@ -1,6 +1,6 @@
 import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@/ui/Icons";
-import Kbd, { Keys } from "@/ui/Kbd";
+import Keystroke, { Keys } from "@/ui/Keystroke";
 import Window from "@/ui/menu/Window";
 import { ListItem, initialList } from "@/ui/menu/MenuData";
 import cx from "clsx";
@@ -172,7 +172,7 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
       )}>
       {icon ? <>{icon}</> : <ArrowRight />}
       <p className="translate-y-[2px] flex-1">{text}</p>
-      {kbd && <Kbd keys={kbd} />}
+      {kbd && <Keystroke keys={kbd} />}
     </div>
   );
 };

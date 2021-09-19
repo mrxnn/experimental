@@ -14,12 +14,12 @@ export enum Keys {
   Backspace = "Backspace",
 }
 
-interface KbdProps {
+interface KeystrokeProps {
   keys: Keys[];
   variant?: "xs" | "sm" | "lg";
 }
 
-const Kbd: FC<KbdProps> = ({ keys, variant = "xs" }) => {
+const Keystroke: FC<KeystrokeProps> = ({ keys, variant = "xs" }) => {
   const showShiftIcon = keys.includes(Keys.Shift);
   const list = keys.filter((k) => k !== Keys.Shift);
 
@@ -42,4 +42,4 @@ const Kbd: FC<KbdProps> = ({ keys, variant = "xs" }) => {
   );
 };
 
-export default Kbd;
+export default Keystroke;
