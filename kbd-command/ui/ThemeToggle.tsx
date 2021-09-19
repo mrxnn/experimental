@@ -14,11 +14,11 @@ const ThemeToggle: FC<{}> = ({}) => {
       aria-label="Toggle Theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
       {mounted && (
-        <div className="flex space-x-2 items-center text-inked-300">
+        <div className="flex space-x-2 items-center text-gray-800 dark:text-gray-300">
           {resolvedTheme === "dark" && (
             <>
               <span className="translate-y-[0.84px] font-light text-sm">
-                Light
+                Light Mode
               </span>
               <Sun size={18} />
             </>
@@ -27,7 +27,7 @@ const ThemeToggle: FC<{}> = ({}) => {
           {resolvedTheme === "light" && (
             <>
               <span className="translate-y-[0.9px] font-light text-sm">
-                Dark
+                Dark Mode
               </span>
               <Moon size={18} />
             </>

@@ -84,7 +84,7 @@ export const MenuContent: FC<{}> = ({}) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-3 border-b border-inked-700">
+      <div className="p-3 border-b border-gray-700">
         <div className="flex space-x-2">
           <Breadcrumb text="Menu" />
           <Breadcrumb text="Work" />
@@ -92,7 +92,7 @@ export const MenuContent: FC<{}> = ({}) => {
         <input
           type="text"
           placeholder="Finnnd..."
-          className="bg-transparent placeholder-inked-500 caret-inked-500 text-lg font-light focus:outline-none w-full mt-3 ml-[3px]"
+          className="bg-transparent placeholder-gray-500 caret-gray-500 text-lg font-light focus:outline-none w-full mt-3 ml-[3px]"
         />
       </div>
 
@@ -166,8 +166,8 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
       className={cx(
         "flex items-center h-12 px-4 mx-2 space-x-4 rounded-md cursor-pointer focus:outline-none",
         {
-          "text-white bg-inked-800": activeMenuText === text,
-          "text-inked-500": activeMenuText !== text,
+          "text-white bg-gray-800": activeMenuText === text,
+          "text-gray-500": activeMenuText !== text,
         }
       )}>
       {icon ? <>{icon}</> : <ArrowRight />}
@@ -178,13 +178,13 @@ const MenuItem: FC<MenuItemProps> = ({ text, kbd, icon, inner, index }) => {
 };
 
 const Breadcrumb = ({ text }: { text: string }) => (
-  <span className="bg-inked-700 text-inked-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
+  <span className="bg-gray-700 text-gray-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
     {text}
   </span>
 );
 
 const MenuTitle = ({ text }: { text: string }) => (
-  <p className="text-inked-500 font-light px-3 my-2 tracking-normal text-xs">
+  <p className="text-gray-500 font-light px-3 my-2 tracking-normal text-xs">
     {text}
   </p>
 );

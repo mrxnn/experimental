@@ -21,7 +21,10 @@ const Navbar: FC<{}> = ({}) => {
             initial={{ translateY: 44 }}
             animate={{ translateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1 * 0.15 }}>
-            Software Engineer, <a href="#">UENO®</a>
+            Software Engineer,{" "}
+            <a href="#">
+              UENO <span style={{ fontFamily: "Inter" }}>®</span>
+            </a>
           </motion.p>
         </motion.div>
         <motion.div className="overflow-hidden">
@@ -38,7 +41,7 @@ const Navbar: FC<{}> = ({}) => {
         <ThemeToggle />
       </div>
       {/* command menu */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 translate-y-[-2px]">
         <motion.div
           initial={{ opacity: 0, translateY: 20 }}
           animate={{ opacity: 1, translateY: 0 }}

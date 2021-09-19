@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-inked-900 text-white tracking-tight;
+    @apply dark:bg-black dark:text-gray-100 text-gray-900 bg-gray-50 tracking-tight;
   }
 }
 
@@ -14,17 +14,18 @@
   }
   .tooltip {
     @apply text-xs pointer-events-none opacity-0 transition duration-200;
-    @apply bg-white/20;
+    @apply bg-gray-200 dark:bg-gray-800;
   }
   .has-tooltip:hover .tooltip {
     @apply opacity-100;
   }
 }
 
+/*cmdk*/
 .command [data-command-item] {
-  @apply text-inked-500 mx-2 rounded-md;
+  @apply text-gray-400 dark:text-gray-500 mx-2 rounded-md;
 }
 
 .command [data-command-item][aria-selected] {
-  @apply text-white bg-inked-800;
+  @apply text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-800/60;
 }

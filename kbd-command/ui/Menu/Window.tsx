@@ -16,7 +16,7 @@ const Window: FC<{}> = ({ children }) => {
         <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
           Menu
         </div>
-        ⌘
+        <span className="font-semibold text-lg">⌘</span>
       </motion.button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -31,7 +31,7 @@ const Window: FC<{}> = ({ children }) => {
               leave="ease-in duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0">
-              <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+              <Dialog.Overlay className="fixed inset-0 bg-white/80 dark:bg-black/80" />
             </Transition.Child>
 
             {/* Actual content that goes inside */}
@@ -43,7 +43,7 @@ const Window: FC<{}> = ({ children }) => {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <div className="bg-inked-900 border border-inked-700 w-[640px] h-full  transform mt-[180px] shadow-xl rounded-lg">
+              <div className="bg-white dark:bg-black border border-gray-100 dark:border-gray-700/60 w-[640px] h-full transform mt-[180px] shadow-2xl dark:shadow-xl rounded-lg">
                 {children}
               </div>
             </Transition.Child>
