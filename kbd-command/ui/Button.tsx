@@ -13,7 +13,7 @@ const Button: FC<ButtonProps> = ({ text, icon, className, onClick }) => {
     <button
       onClick={onClick}
       className={cx(
-        "bg-white text-black rounded-full px-4 py-1 flex items-center space-x-4",
+        "bg-black text-white dark:bg-white  dark:text-black rounded-full px-4 py-1 flex items-center space-x-4",
         className
       )}>
       <p className="font-medium tracking-tight">{text}</p>

@@ -10,9 +10,9 @@ import {
   useRef,
   useState,
 } from "react";
-import Window from "../Menu/Window";
-import { ArrowRight } from "../Icons";
-import Kbd, { Keys } from "../Kbd";
+import Window from "@/ui/menu/Window";
+import { ArrowRight } from "@/ui/Icons";
+import Keystroke, { Keys } from "@/ui/Keystroke";
 import useKeyPress from "@/lib/useKeyPress";
 
 import {
@@ -65,7 +65,7 @@ const CommandMenu: FC<{}> = memo(({}) => {
           {...commandProps}
           className="flex flex-col command"
           ref={commandRef}>
-          <div className="p-3 border-b border-inked-700">
+          <div className="p-3 border-b border-gray-200 dark:border-gray-700/60">
             <div className="flex space-x-2">
               {breadcrumbs.map((bread, index) => (
                 <Breadcrumb key={`${bread}-${index}`} text={bread} />
@@ -73,7 +73,7 @@ const CommandMenu: FC<{}> = memo(({}) => {
             </div>
             <CommandInput
               placeholder="Finnnd..."
-              className="bg-transparent placeholder-inked-500 caret-inked-500 text-lg font-light focus:outline-none w-full mt-3 ml-[3px]"
+              className="bg-transparent placeholder-gray-500 caret-gray-500 text-lg font-light focus:outline-none w-full mt-3 ml-[3px]"
             />
           </div>
           <div className="flex-1 py-2">
@@ -106,7 +106,7 @@ const MenuItem: FC<MenuItemProps> = ({ value, text, kbd, icon, callback }) => {
       <div className="flex items-center h-12 px-4 space-x-4 rounded-md cursor-pointer focus:outline-none">
         {icon ? <>{icon}</> : <ArrowRight />}
         <p className="translate-y-[2px] flex-1">{text}</p>
-        {kbd && <Kbd keys={kbd} />}
+        {kbd && <Keystroke variant="xs" keys={kbd} />}
       </div>
     </CommandItem>
   );
@@ -114,14 +114,14 @@ const MenuItem: FC<MenuItemProps> = ({ value, text, kbd, icon, callback }) => {
 
 const Breadcrumb = ({ text }: { text: string }) => {
   return (
-    <span className="bg-inked-700 text-inked-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
+    <span className="bg-gray-200 dark:bg-gray-800 dark:text-gray-300 text-xs font-light px-2 py-1 cursor-pointer rounded-md">
       {text}
     </span>
   );
 };
 
 const MenuTitle = ({ text }: { text: string }) => (
-  <p className="text-inked-500 font-light px-3 my-2 tracking-normal text-xs">
+  <p className="text-gray-500 font-light px-3 my-2 tracking-normal text-xs">
     {text}
   </p>
 );

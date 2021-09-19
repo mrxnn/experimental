@@ -1,4 +1,4 @@
-import { Keys } from "@/ui/Kbd";
+import { Keys } from "@/ui/Keystroke";
 import { useEffect, useState } from "react";
 
 const useKeyPress = (targetKey: Keys) => {
