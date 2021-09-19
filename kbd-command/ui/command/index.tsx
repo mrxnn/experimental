@@ -10,8 +10,10 @@ import {
   useRef,
   useState,
 } from "react";
-import Window from "@/ui/menu/Window";
+
+import { motion } from "framer-motion";
 import { ArrowRight } from "@/ui/Icons";
+import Window from "@/ui/Window";
 import Keystroke, { Keys } from "@/ui/Keystroke";
 import useKeyPress from "@/lib/useKeyPress";
 
@@ -28,6 +30,7 @@ import {
 // command context
 const CommandContext = createContext(null);
 
+// command menu
 const CommandMenu: FC<{}> = memo(({}) => {
   const commandProps = useCommand();
   const { search } = commandProps;
@@ -35,13 +38,12 @@ const CommandMenu: FC<{}> = memo(({}) => {
   const Items = pages[pages.length - 1];
   const backspacePress = useKeyPress(Keys.Backspace);
   const [breadcrumbs, setBreadcrumbs] = useState<string[]>(["Menu"]);
+  const [isCommandOpen, setIsCommandOpen] = useState(false);
 
   // go back
   useEffect(() => {
     if (backspacePress && !search) {
-      if (breadcrumbs.length > 1) {
-        setBreadcrumbs((bks) => bks.splice(-1));
-      }
+      if (breadcrumbs.length > 1) setBreadcrumbs((bks) => bks.splice(-1));
       setPages([...pages, TopLevelCommands]);
     }
   }, [backspacePress]);
@@ -60,7 +62,21 @@ const CommandMenu: FC<{}> = memo(({}) => {
 
   return (
     <div>
-      <Window>
+      {/* Trigger Button */}
+      <motion.button
+        initial={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
+        onClick={() => setIsCommandOpen(true)}
+        className="has-tooltip text-xl relative">
+        <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
+          Menu
+        </div>
+        <span className="font-semibold text-lg">⌘</span>
+      </motion.button>
+
+      {/* Command Dialog */}
+      <Window isOpen={isCommandOpen} setIsOpen={setIsCommandOpen}>
         <Command
           {...commandProps}
           className="flex flex-col command"

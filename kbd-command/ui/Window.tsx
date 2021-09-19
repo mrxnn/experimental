@@ -1,24 +1,13 @@
-import { FC, Fragment, useState } from "react";
-import { motion } from "framer-motion";
+import { FC, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const Window: FC<{}> = ({ children }) => {
-  let [isOpen, setIsOpen] = useState(false);
-
+const Window: FC<{ isOpen: boolean; setIsOpen: (value: boolean) => void }> = ({
+  isOpen,
+  setIsOpen,
+  children,
+}) => {
   return (
     <>
-      <motion.button
-        initial={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
-        onClick={() => setIsOpen(true)}
-        className="has-tooltip text-xl relative">
-        <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
-          Menu
-        </div>
-        <span className="font-semibold text-lg">⌘</span>
-      </motion.button>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog className="fixed inset-0 z-10" onClose={() => setIsOpen(false)}>
           <div className="min-h-screen flex justify-center">

@@ -1,14 +1,28 @@
 import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@/ui/Icons";
 import Keystroke, { Keys } from "@/ui/Keystroke";
-import Window from "@/ui/menu/Window";
+import Window from "@/ui/Window";
 import { ListItem, initialList } from "@/ui/menu/MenuData";
 import cx from "clsx";
 
 export const Menu: FC<{}> = ({}) => {
+  const [isCommandOpen, setIsCommandOpen] = useState(false);
+
   return (
     <>
-      <Window>
+      <motion.button
+        initial={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 3 * 0.15 }}
+        onClick={() => setIsCommandOpen(true)}
+        className="has-tooltip text-xl relative">
+        <div className="tooltip px-3 py-1 mt-2 rounded absolute top-full -right-1">
+          Menu
+        </div>
+        <span className="font-semibold text-lg">⌘</span>
+      </motion.button>
+
+      <Window isOpen={isCommandOpen} setIsOpen={setIsCommandOpen}>
         <MenuContent />
       </Window>
     </>
@@ -17,6 +31,7 @@ export const Menu: FC<{}> = ({}) => {
 
 import { useMenu, MenuContext } from "@/ui/menu/Menu.context";
 import useKeyPress from "@/lib/useKeyPress";
+import { motion } from "framer-motion";
 
 export const MenuContent: FC<{}> = ({}) => {
   const [menuList, setMenuList] = useState<ListItem[]>(initialList);
