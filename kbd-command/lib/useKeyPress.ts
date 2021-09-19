@@ -1,30 +1,28 @@
-import { Keys } from "@/ui/Keystroke";
 import { useEffect, useState } from "react";
+import tinykeys from "tinykeys";
 
-const useKeyPress = (targetKey: Keys) => {
+const useKeyPress = (targetKey: string) => {
   const [keyPressed, setKeyPressed] = useState(false);
 
-  const handleKeyDown = ({ key }) => {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  };
-
-  const handleKeyUp = ({ key }) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    const unsubs = [
+      tinykeys(
+        window,
+        { [targetKey]: () => setKeyPressed(true) },
+        { event: "keydown" }
+      ),
+      tinykeys(
+        window,
+        { [targetKey]: () => setKeyPressed(false) },
+        { event: "keyup" }
+      ),
+    ];
 
+    // unsub
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      unsubs.forEach((unsub) => unsub());
     };
-  }, []);
+  }, [targetKey]);
 
   return keyPressed;
 };

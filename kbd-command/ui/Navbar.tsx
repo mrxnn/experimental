@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import Keystroke, { Keys } from "@/ui/Keystroke";
+import Keystroke from "@/ui/Keystroke";
 import CommandMenu from "@/ui/command";
 import ThemeToggle from "@/ui/ThemeToggle";
 
@@ -46,7 +46,7 @@ const Navbar: FC<{}> = ({}) => {
           initial={{ opacity: 0, translateY: 20 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 * 0.15 }}>
-          <Keystroke keys={[Keys.Command, Keys.K]} variant="sm" />
+          <Keystroke keys={["Cmd", "K"]} variant="sm" />
         </motion.div>
         <CommandMenu />
       </div>

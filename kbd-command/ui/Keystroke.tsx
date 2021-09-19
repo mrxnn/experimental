@@ -1,27 +1,14 @@
 import { FC } from "react";
 import { ShiftKey } from "@/ui/Icons";
 
-// list of keys
-export enum Keys {
-  K = "K",
-  T = "T",
-  H = "H",
-  Shift = "Shift",
-  Command = "Cmd",
-  ArrowDown = "ArrowDown",
-  ArrowUp = "ArrowUp",
-  Enter = "Enter",
-  Backspace = "Backspace",
-}
-
 interface KeystrokeProps {
-  keys: Keys[];
+  keys: string[];
   variant?: "xs" | "sm" | "lg";
 }
 
 const Keystroke: FC<KeystrokeProps> = ({ keys, variant = "xs" }) => {
-  const showShiftIcon = keys.includes(Keys.Shift);
-  const list = keys.filter((k) => k !== Keys.Shift);
+  const showShiftIcon = keys.includes("Shift");
+  const list = keys.filter((k) => k !== "Shift");
 
   return (
     <p className="flex space-x-1 text-sm">

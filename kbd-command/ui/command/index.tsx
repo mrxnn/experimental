@@ -14,8 +14,9 @@ import {
 import { motion } from "framer-motion";
 import { ArrowRight } from "@/ui/Icons";
 import Window from "@/ui/Window";
-import Keystroke, { Keys } from "@/ui/Keystroke";
+import Keystroke from "@/ui/Keystroke";
 import useKeyPress from "@/lib/useKeyPress";
+import tinykeys from "tinykeys";
 
 import {
   Command,
@@ -36,11 +37,11 @@ const CommandMenu: FC<{}> = memo(({}) => {
   const { search } = commandProps;
   const [pages, setPages] = usePages(commandProps, TopLevelCommands);
   const Items = pages[pages.length - 1];
-  const backspacePress = useKeyPress(Keys.Backspace);
+  const backspacePress = useKeyPress("Backspace");
   const [breadcrumbs, setBreadcrumbs] = useState<string[]>(["Menu"]);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
 
-  // go back
+  //go back
   useEffect(() => {
     if (backspacePress && !search) {
       if (breadcrumbs.length > 1) setBreadcrumbs((bks) => bks.splice(-1));
@@ -59,6 +60,19 @@ const CommandMenu: FC<{}> = memo(({}) => {
       }, 100);
     }
   }, [pages]);
+
+  // keybindings
+  useEffect(() => {
+    const unsubscribe = tinykeys(window, {
+      // open-close window
+      "$mod+k": (e) => {
+        e.preventDefault();
+        setIsCommandOpen((value) => !value);
+      },
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div>
@@ -111,7 +125,7 @@ export default CommandMenu;
 interface MenuItemProps {
   value: string;
   text: string;
-  kbd?: Keys[];
+  kbd?: string[];
   icon?: ReactElement;
   callback?: () => void;
 }
@@ -151,7 +165,7 @@ export const TopLevelCommands: FC<{}> = ({}) => {
       <MenuItem
         value="A"
         text="Theme"
-        kbd={[Keys.Shift, Keys.T]}
+        kbd={["Shift", "P"]}
         callback={() => {
           setBreadcrumbs([...breadcrumbs, "Theme"]);
           setPages([...pages, ThemeCommands]);
