@@ -32,7 +32,7 @@ const Window: FC<{ isOpen: boolean; setIsOpen: (value: boolean) => void }> = ({
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <div className="bg-white dark:bg-black border border-gray-100 dark:border-gray-700/60 w-[640px] h-full transform mt-[180px] shadow-2xl dark:shadow-xl rounded-lg">
+              <div className="bg-white dark:bg-black border border-gray-100 dark:border-gray-700/60 w-[640px] h-full px-[1px] transform mt-[180px] shadow-2xl dark:shadow-xl rounded-lg">
                 {children}
               </div>
             </Transition.Child>

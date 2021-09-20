@@ -8,24 +8,11 @@
   }
 }
 
-@layer components {
-  .has-tooltip {
-    @apply cursor-pointer;
-  }
-  .tooltip {
-    @apply text-xs pointer-events-none opacity-0 transition duration-200;
-    @apply bg-gray-200 dark:bg-gray-800;
-  }
-  .has-tooltip:hover .tooltip {
-    @apply opacity-100;
-  }
-}
-
 /*cmdk*/
 .command [data-command-item] {
-  @apply text-gray-500 dark:text-gray-500 mx-2 rounded-md;
+  @apply text-gray-500 mx-2 rounded-md;
 }
 
 .command [data-command-item][aria-selected] {
-  @apply text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-800/60;
+  @apply text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-700/30;
 }
