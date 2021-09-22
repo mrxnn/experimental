@@ -86,7 +86,7 @@ const CommandMenu: FC<{}> = memo(({}) => {
       <Window isOpen={isCommandOpen} setIsOpen={setIsCommandOpen}>
         <Command
           {...commandProps}
-          className="flex flex-col command"
+          className="flex flex-col command absolute inset-0"
           ref={commandRef}>
           <div className="p-3 border-b border-gray-200 dark:border-gray-700/60">
             <div className="flex space-x-2">
@@ -99,8 +99,8 @@ const CommandMenu: FC<{}> = memo(({}) => {
               className="bg-transparent placeholder-gray-500 caret-gray-500 text-lg font-light focus:outline-none w-full mt-3 ml-[3px]"
             />
           </div>
-          <div className="flex-1 py-2">
-            <CommandList className="max-h-[314px] overflow-y-auto">
+          <div className="flex-1 py-2 overflow-hidden">
+            <CommandList className="h-full overflow-y-auto">
               <CommandContext.Provider
                 value={{ pages, setPages, breadcrumbs, setBreadcrumbs }}>
                 <Items />

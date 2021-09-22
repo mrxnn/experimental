@@ -28,7 +28,7 @@ const Navbar: FC<{}> = ({}) => {
       </div>
       {/* command menu */}
       <div className="flex items-center space-x-3 translate-y-[-2px]">
-        <div className="hidden md:flex">
+        <div className="hidden sm:flex">
           <Keystroke keys={["Cmd", "K"]} variant="sm" />
         </div>
         <CommandMenu />
