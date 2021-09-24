@@ -1,13 +1,13 @@
 import { FC } from "react";
 import Layout from "@/ui/Layout";
-import BlogPosts from "@/ui/BlogPosts";
+import BlogPostsList from "@/ui/BlogPostsList";
 import { getMdx } from "@/lib/mdx";
 import { Post } from "@/types/post";
 
 const Home: FC<{ posts: Post[] }> = ({ posts }) => {
   return (
     <Layout>
-      <BlogPosts posts={posts} />
+      <BlogPostsList posts={posts} />
     </Layout>
   );
 };
