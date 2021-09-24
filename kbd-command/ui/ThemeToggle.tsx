@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "@/ui/Icons";
+import { Moon, Sun } from "ui/Icons";
 
 const ThemeToggle: FC<{}> = ({}) => {
   const { resolvedTheme, setTheme } = useTheme();

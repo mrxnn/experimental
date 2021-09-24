@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { zeroPad } from "@/lib/numbers";
-import { Post } from "@/types/post";
+import { zeroPad } from "lib/numbers";
+import { Post } from "types/post";
 
 type PostMeta = Post & {
   index: number;

@@ -11,10 +11,10 @@ import {
   useState,
 } from "react";
 
-import { ArrowRight } from "@/ui/Icons";
-import Window from "@/ui/Window";
-import Keystroke from "@/ui/Keystroke";
-import useKeyPress from "@/lib/useKeyPress";
+import { ArrowRight } from "ui/Icons";
+import Window from "ui/Window";
+import Keystroke from "ui/Keystroke";
+import useKeyPress from "lib/useKeyPress";
 import tinykeys from "tinykeys";
 
 import {

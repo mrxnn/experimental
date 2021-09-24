@@ -1,8 +1,8 @@
 import { FC, ReactElement, useEffect, useRef, useState } from "react";
-import { ArrowRight } from "@/ui/Icons";
-import Keystroke from "@/ui/Keystroke";
-import Window from "@/ui/Window";
-import { ListItem, initialList } from "@/ui/menu/MenuData";
+import { ArrowRight } from "ui/Icons";
+import Keystroke from "ui/Keystroke";
+import Window from "ui/Window";
+import { ListItem, initialList } from "ui/menu/MenuData";
 import cx from "clsx";
 
 export const Menu: FC<{}> = ({}) => {
@@ -26,8 +26,8 @@ export const Menu: FC<{}> = ({}) => {
   );
 };
 
-import { useMenu, MenuContext } from "@/ui/menu/Menu.context";
-import useKeyPress from "@/lib/useKeyPress";
+import { useMenu, MenuContext } from "ui/menu/Menu.context";
+import useKeyPress from "lib/useKeyPress";
 
 export const MenuContent: FC<{}> = ({}) => {
   const [menuList, setMenuList] = useState<ListItem[]>(initialList);

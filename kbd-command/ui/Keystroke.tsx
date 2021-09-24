@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ShiftKey } from "@/ui/Icons";
+import { ShiftKey } from "ui/Icons";
 import cx from "clsx";
 
 interface KeystrokeProps {

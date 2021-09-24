@@ -1,7 +1,7 @@
-import { zeroPad } from "@/lib/numbers";
-import { Post } from "@/types/post";
-import { ArrowRight } from "@/ui/Icons";
-import Button from "@/ui/Button";
+import { zeroPad } from "lib/numbers";
+import { Post } from "types/post";
+import { ArrowRight } from "ui/Icons";
+import Button from "ui/Button";
 import BlogPostItem from "ui/BlogPostItem";
 
 export default function BlogPostsList({ posts }: { posts: Post[] }) {

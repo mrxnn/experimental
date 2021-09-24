@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ListItem } from "@/ui/menu/MenuData";
+import { ListItem } from "ui/menu/MenuData";
 
 interface MenuContextType {
   menuList: ListItem[];

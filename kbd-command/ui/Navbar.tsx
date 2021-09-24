@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Keystroke from "@/ui/Keystroke";
-import CommandMenu from "@/ui/command";
-import ThemeToggle from "@/ui/ThemeToggle";
+import Keystroke from "ui/Keystroke";
+import CommandMenu from "ui/command";
+import ThemeToggle from "ui/ThemeToggle";
 
 const Navbar: FC<{}> = ({}) => {
   return (
